@@ -6,7 +6,9 @@ import axios from 'axios';
 
 class App extends Component {
 	state = {
-	    selectedFile: null
+	    selectedFile: null,
+	    prediction: null,
+	    image: null
 	};
 
 	onFileChange = event => {
@@ -20,27 +22,32 @@ class App extends Component {
             this.state.selectedFile,
             this.state.selectedFile.name
         );
-
         console.log(this.state.selectedFile);
 
-        axios.post("http://localhost:5000/message", formData);
+        axios.post("/upload", formData).then((response) => {
+        console.log(response.data)});
+
+        this.setState({image: URL.createObjectURL(this.state.selectedFile)})
 	};
+
+	onFilePredict = () => {
+	    axios.get("/predict").then((response) => {
+	    console.log(response.data['class']);
+	    this.setState({ prediction: response.data['class']})
+	    console.log(this.state.prediction)
+	    });
+	}
 
 
 	render() {
 	    return (
             <div>
-                <h1>
-                GeeksforGeeks
-                </h1>
-                <h3>
-                File Upload using React!
-                </h3>
                 <div>
                     <input type="file" onChange={this.onFileChange} />
-                    <button onClick={this.onFileUpload}>
-                    Upload!
-                    </button>
+                    <button onClick={this.onFileUpload}> Upload </button>
+                    <img src={this.state.image}/>
+                    <button onClick={this.onFilePredict}> Predict </button>
+                    <p id='image_class'>{this.state.prediction}</p>
                 </div>
             </div>
 	    );
