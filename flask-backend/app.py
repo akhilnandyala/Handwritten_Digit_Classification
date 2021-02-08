@@ -1,11 +1,15 @@
 from flask import Flask, render_template
+from flask_cors import CORS
+
 
 app = Flask("__main__")
+CORS(app)
 
-@app.route("/")
+@app.route("/message", methods=['GET', 'POST'])
 def index():
-    return render_template("index.html")
+    return {'message': 'hello'}
 
 
 
-app.run(debug=True)
+if __name__ == "__main__":
+    app.run(debug=True)

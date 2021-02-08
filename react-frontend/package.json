@@ -13,10 +13,10 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "start-api": "cd flask-backend && flask run app.py --no-debugger",
+    "start-api": "cd ../flask-backend && flask run",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "test-api": "cd flask-backend && flask test test_app.py",
+    "test-api": "cd ../flask-backend && flask test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -38,5 +38,5 @@
     ]
   },
 
-  "proxy": "https://localhost:5000"
+  "proxy": "http://localhost:5000"
 }
