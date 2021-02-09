@@ -42,10 +42,10 @@ class App extends Component {
                 <div class='title'><b><h1>Handwritten Digit Recognition</h1></b></div>
                 <div class='sub_container'>
                     <p><b> Upload an image containing a handwritten digit </b></p>
-                    <input type="file" onChange={this.onFileChange} />
-                    <button onClick={this.onFileUpload}> Upload </button>
+                    <input type="file" onChange={this.onFileChange} data-cy='file_input' />
+                    <button onClick={this.onFileUpload} data-cy='file_upload'> Upload </button>
                     <img class='image_container' src={this.state.image}/>
-                    <button onClick={this.onFilePredict}> Classify </button>
+                    <button onClick={this.onFilePredict} data-cy='file_predict'> Classify </button>
                     <p class='prediction_container'> value: <b>{this.state.prediction}</b> </p>
                 </div>
             </div>
