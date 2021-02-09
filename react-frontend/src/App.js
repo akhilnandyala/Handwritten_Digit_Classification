@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {Component}  from 'react';
-import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
 
 class App extends Component {
 	state = {
 	    selectedFile: null,
-	    prediction: null,
-	    image: null
+	    image: null,
+	    prediction: null
 	};
 
 	onFileChange = event => {
@@ -23,10 +22,8 @@ class App extends Component {
             this.state.selectedFile.name
         );
         console.log(this.state.selectedFile);
-
         axios.post("/upload", formData).then((response) => {
         console.log(response.data)});
-
         this.setState({image: URL.createObjectURL(this.state.selectedFile)})
 	};
 
@@ -41,13 +38,15 @@ class App extends Component {
 
 	render() {
 	    return (
-            <div>
-                <div>
+            <div class='main_container'>
+                <div class='title'><b><h1>Handwritten Digit Recognition</h1></b></div>
+                <div class='sub_container'>
+                    <p><b> Upload an image containing a handwritten digit </b></p>
                     <input type="file" onChange={this.onFileChange} />
                     <button onClick={this.onFileUpload}> Upload </button>
-                    <img src={this.state.image}/>
-                    <button onClick={this.onFilePredict}> Predict </button>
-                    <p id='image_class'>{this.state.prediction}</p>
+                    <img class='image_container' src={this.state.image}/>
+                    <button onClick={this.onFilePredict}> Classify </button>
+                    <p class='prediction_container'> value: <b>{this.state.prediction}</b> </p>
                 </div>
             </div>
 	    );
