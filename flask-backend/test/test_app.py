@@ -1,6 +1,5 @@
 from app import app
 from io import BytesIO
-import pytest
 
 def test_app_upload():
     client = app.test_client()
