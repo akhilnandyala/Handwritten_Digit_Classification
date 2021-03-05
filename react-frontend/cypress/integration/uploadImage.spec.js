@@ -19,12 +19,12 @@ describe('Image upload', () => {
         cy.get('[data-cy="file_upload"]').click();
         });
 
-    it('should be not be able to upload a file of size greater than 28x28', () => {
-        const fixtureFile = 'test_file_unsupported.PNG';
-        cy.get('input[data-cy=file_input]').attachFile(fixtureFile);
-        cy.get('[data-cy="file_upload"]').should('exist');
-        cy.get('[data-cy="file_upload"]').click();
-        cy.wait(200);
-        cy.on('window:alert', (txt) => { expect(txt).to.contains('Please select an image of dimensions 28x28') });
-        });
+//    it('should be not be able to upload a file of size greater than 28x28', () => {
+//        const fixtureFile = 'test_file_unsupported.PNG';
+//        cy.get('input[data-cy=file_input]').attachFile(fixtureFile);
+//        cy.get('[data-cy="file_upload"]').should('exist');
+//        cy.get('[data-cy="file_upload"]').click();
+//        cy.wait(200);
+//        cy.on('window:alert', (txt) => { expect(txt).to.contains('Please select an image of dimensions 28x28') });
+//        });
 })
